@@ -9,6 +9,7 @@ import {
   FormControl,
   FormLabel,
   Text,
+  Select,
   useToast,
   Input,
   Textarea,
@@ -28,6 +29,7 @@ const Home = () => {
   const [message, setMessage] = useState("");
   const [value, onChange] = useState(new Date());
   const [data, setData] = useState([]);
+  const [countries, setCountries] = useState([]);
 
   const handleCalc = (e) => {
     e.preventDefault();
@@ -69,6 +71,9 @@ const Home = () => {
       country: country.current.value,
       messages: messages.current.value,
     };
+    console.log(fullDetail);
+    console.log(country);
+
     try {
       const res = await axios.post(
         "http://localhost:5000/app/bmi/bmiform/create",
@@ -103,6 +108,14 @@ const Home = () => {
   const reload = () => {
     window.location.reload().preventDefault();
   };
+
+  useEffect(() => {
+    const getCountries = async () => {
+      const res = await axios.get("http://localhost:5000/countries");
+      setCountries(res.data);
+    };
+    getCountries();
+  }, []);
 
   useEffect(() => {
     const getSuggestion = async () => {
@@ -330,18 +343,16 @@ const Home = () => {
               <FormLabel fontSize={17} fontWeight={500} paddingBottom={2}>
                 Country
               </FormLabel>
-              <Input
-                border='2px solid #1a202c'
-                outline='none'
-                width='100%'
-                fontSize={17}
-                fontWeight={500}
-                height={"6vh"}
-                borderRadius={"6px"}
-                padding={4}
-                type='text'
-                ref={country}
-              />
+              <Select
+                variant='filled'
+                placeholder='Select Country'
+                ref={country}>
+                {countries.map((countries) => (
+                  <option key={countries._id} value={countries._id}>
+                    {countries.name}
+                  </option>
+                ))}
+              </Select>
             </FormControl>
             <FormLabel fontSize={17} fontWeight={500} paddingBottom={1}>
               Suggestion Message
@@ -400,8 +411,7 @@ const Home = () => {
               <Box w={"100%"} h={"5vh"} transition={"0.3s all"}>
                 <p className='boxTitle'> BMI: {data.bmiNumber}</p>
                 <Badge color={"#322659"} bg='#D6BCFA'>
-                  {" "}
-                  {data.country}
+                  {data.country.name}
                 </Badge>
               </Box>
               <Box width={"100%"} height={"100%"} paddingTop={2}>

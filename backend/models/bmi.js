@@ -6,7 +6,8 @@ const bmiSchema = new mongoose.Schema(
       ref: "Users",
     },
     country: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "countries",
     },
     firstname: {
       type: String,

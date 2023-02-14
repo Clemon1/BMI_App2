@@ -4,19 +4,60 @@ const user = require("../models/users");
 
 // Getting a user bmi data
 router.get("/bmi/all", async (req, res) => {
-  const allbmi = await bmiCalc.find().populate("userId").exec();
+  const filterCountry = req.query.country;
+  filterCountry.length <= 0
+    ? (allbmi = await bmiCalc
+        .find()
+        .populate("userId")
+        .populate("country")
+        .exec())
+    : (allbmi = await bmiCalc
+        .find({ country: { $in: filterCountry } })
+        .populate("userId")
+        .populate("country")
+        .exec());
+
   res.status(200).json(allbmi);
 });
+
+// single User BMI
+router.get("/bmi/all/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const currentUser = await user.findById(id);
+
+    const findBMI = await bmiCalc
+      .find({ userId: currentUser._id })
+      .populate("country")
+      .exec();
+
+    res.status(200).json(findBMI);
+  } catch (error) {
+    res.json(error.message);
+  }
+});
+
 //singlepost
 router.get("/bmi/all/suggest/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const allbmi = await bmiCalc.findById(id).populate("userId").exec();
+    const allbmi = await bmiCalc
+      .findById(id)
+      .populate("userId")
+      .populate("country")
+      .exec();
     res.status(200).json(allbmi);
   } catch (error) {
     res.status(500).json(error.message);
     console.log(error.message);
   }
+});
+//  Crate a new suggestion
+
+router.post("/bmi/bmiform/create", async (req, res) => {
+  const newCalc = new bmiCalc(req.body);
+  const savedCalc = await newCalc.save();
+  res.json(savedCalc);
 });
 
 //update Single suggestion
@@ -33,27 +74,7 @@ router.put("/bmi/all/update/:id", async (req, res) => {
   }
 });
 
-//  Crate a new suggestion
-
-router.post("/bmi/bmiform/create", async (req, res) => {
-  const newCalc = new bmiCalc(req.body);
-  const savedCalc = await newCalc.save();
-  res.json(savedCalc);
-});
-
 // find single user bmi suggestion
-router.get("/bmi/all/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const currentUser = await user.findById(id);
-
-    const findBMI = await bmiCalc.find({ userId: currentUser._id });
-
-    res.status(200).json(findBMI);
-  } catch (error) {
-    res.json(error.message);
-  }
-});
 
 router.delete("/bmi/delete/:id", async (req, res) => {
   const id = req.params.id;

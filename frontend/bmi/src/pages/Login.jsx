@@ -9,6 +9,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { FlapperSpinner } from "react-spinners-kit";
+
 import { loginCall } from "../api/loginCall";
 import { AuthContext } from "../context/authContext";
 
@@ -26,9 +27,11 @@ const Login = () => {
       },
 
       dispatch,
+      error,
     );
   };
   console.log(user);
+  console.log(error);
   return (
     <div className='auth'>
       <Flex justifyContent='center' bg={"#e9d8fd"}>
@@ -37,20 +40,22 @@ const Login = () => {
           h='80vh'
           paddingY={50}
           display='flex'
-          justifyContent='center'
-        >
+          justifyContent='center'>
           <form className='formBody' onSubmit={handleClick}>
             {error && (
-              <Text textAlign='center' color={"#ffffff"} fontSize={17}>
-                {error}
-              </Text>
+              <>
+                <Box>
+                  <Text textAlign='center' color={"#ffffff"} fontSize={17}>
+                    {error}
+                  </Text>
+                </Box>
+              </>
             )}
             <Text
               color={"#ffffff"}
               fontSize={20}
               fontWeight={500}
-              textAlign='center'
-            >
+              textAlign='center'>
               Login Account
             </Text>
 
@@ -85,9 +90,8 @@ const Login = () => {
               fontSize={16}
               fontWeight={500}
               color='#1a202c'
-              bg='#f7fafc'
-            >
-              {isFetching ? <FlapperSpinner color='#1a202c' /> : "Login"}
+              bg='#f7fafc'>
+              {isFetching ? <FlapperSpinner color='#1a202c' /> : <p> Login</p>}
             </Button>
           </form>
         </Box>

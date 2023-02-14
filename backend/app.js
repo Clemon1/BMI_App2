@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -8,7 +9,9 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT;
 const authRouter = require("./router/auth");
 const bmiCalcRouter = require("./router/bmiRouter");
+const countryRouter = require("./router/countries");
 // Database connection
+
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -25,11 +28,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("BMI APP");
-});
+
 app.use("/bmi", authRouter);
 app.use("/app", bmiCalcRouter);
+app.use("/countries", countryRouter);
 app.listen(PORT, () => {
   console.log(`BMI app connected to port ${PORT}`);
 });

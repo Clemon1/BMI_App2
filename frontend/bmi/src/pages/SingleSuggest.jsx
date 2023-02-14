@@ -40,7 +40,7 @@ const SingleSuggest = () => {
             {suggests.firstname} {suggests.lastname}
           </Text>
           <Badge fontSize={16} color={"#322659"} bg='#D6BCFA' borderRadius={5}>
-            {suggests.country}
+            {suggests.country.name}
           </Badge>
           <Text fontWeight={500} fontSize={25} paddingBottom={10}>
             BMI: {suggests.bmiNumber}

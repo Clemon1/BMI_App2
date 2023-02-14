@@ -1,4 +1,12 @@
-import { Badge, Box, Flex, Input, Text, Button } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Flex,
+  Input,
+  Text,
+  Button,
+  Select,
+} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BiDotsVerticalRounded } from "react-icons/bi";
@@ -8,16 +16,28 @@ const AllSuggest = () => {
   // const { user } = useContext(AuthContext);
   const [suggest, setSugguest] = useState([]);
   const [query, setQuery] = useState("");
+  const [countries, setCountries] = useState([]);
+  const [filterCountry, setFilterCountry] = useState("");
 
   useEffect(() => {
+    const getCountries = async (e) => {
+      const res = await axios.get("http://localhost:5000/countries");
+      setCountries(res.data);
+    };
+    getCountries();
+  }, []);
+  useEffect(() => {
     const handleAllSuggest = async () => {
-      const res = await axios.get("http://localhost:5000/app/bmi/all");
+      const res = await axios.get(
+        `http://localhost:5000/app/bmi/all?country=${filterCountry}`,
+      );
       await setSugguest(res.data);
 
       console.log(res.data);
     };
     handleAllSuggest();
-  }, []);
+  }, [filterCountry]);
+
   return (
     <Box w={"100%"} height={"100vh"} bg={"#e9d8fd"}>
       <Box w={"100%"} height={"fit-content"} bg={"#e9d8fd"}>
@@ -42,6 +62,19 @@ const AllSuggest = () => {
             bg={"#f4f4f4"}
             type='text'
           />
+
+          <form>
+            <Select
+              variant='filled'
+              placeholder='All Countries'
+              onChange={(e) => setFilterCountry(e.target.value)}>
+              {countries.map((countries) => (
+                <option key={countries._id} value={countries._id}>
+                  {countries.name}
+                </option>
+              ))}
+            </Select>
+          </form>
         </Box>
         <Flex
           width={"100%"}
@@ -51,11 +84,7 @@ const AllSuggest = () => {
           paddingBottom={20}
           height={"fit-content"}>
           {suggest
-            .filter(
-              (s) =>
-                s.country.toLowerCase().includes(query) ||
-                s.userId.firstname.toLowerCase().includes(query),
-            )
+            .filter((s) => s.userId.firstname.toLowerCase().includes(query))
             .map((s) => {
               return (
                 <Box
@@ -67,7 +96,7 @@ const AllSuggest = () => {
                   display={"flex"}
                   flexDirection={"column"}
                   gap={4}
-                  key={s.id}>
+                  key={s._id}>
                   <Flex
                     width={"100%"}
                     height={["4vh", "4vh", "2vh", "2vh"]}
@@ -97,7 +126,7 @@ const AllSuggest = () => {
                       bg={"#D6BCFA"}
                       fontWeight={500}
                       color='#322659'>
-                      {s.country}
+                      {s.country.name}
                     </Badge>
                   </Box>
                   <Box
