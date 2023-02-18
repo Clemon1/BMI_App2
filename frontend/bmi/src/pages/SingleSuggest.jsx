@@ -4,7 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 const SingleSuggest = () => {
   const { id } = useParams();
-  const [suggests, setSugguests] = useState([]);
+  const [suggests, setSugguests] = useState({});
 
   useEffect(() => {
     const handleSuggest = async () => {
@@ -21,6 +21,7 @@ const SingleSuggest = () => {
     };
     handleSuggest();
   }, [id]);
+  // console.log(suggests.country._id);
   return (
     <Box
       width={"100%"}
@@ -40,7 +41,7 @@ const SingleSuggest = () => {
             {suggests.firstname} {suggests.lastname}
           </Text>
           <Badge fontSize={16} color={"#322659"} bg='#D6BCFA' borderRadius={5}>
-            {suggests.country.name}
+            {/* {suggests.country.name} */}
           </Badge>
           <Text fontWeight={500} fontSize={25} paddingBottom={10}>
             BMI: {suggests.bmiNumber}

@@ -92,16 +92,14 @@ const Home = () => {
       setData([...data, res.data]);
       console.log(res.data);
     } catch (err) {
-      if (err) {
-        toast({
-          title: "Error creating new suggestion",
-          position: "top-right",
-          variant: "top-accent",
-          status: "error",
-          duration: 4000,
-          isClosable: true,
-        });
-      }
+      toast({
+        title: "Error creating new suggestion",
+        position: "top-right",
+        variant: "top-accent",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
     }
   };
 
@@ -391,7 +389,7 @@ const Home = () => {
 
       <Flex
         w={"100%"}
-        h={"60vh"}
+        h={"fit-content"}
         padding={"8px"}
         gap={"8px"}
         flexWrap={"wrap"}

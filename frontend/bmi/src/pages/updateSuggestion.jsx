@@ -21,7 +21,7 @@ const UpdateSuggestion = () => {
   const { id } = useParams();
   const [suggests, setSugguests] = useState([]);
   const [bmiNumber, setBmiNumber] = useState("");
-  const [country, setCountry] = useState("");
+
   const [messages, setMessages] = useState("");
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const UpdateSuggestion = () => {
 
         setSugguests(res.data);
         setBmiNumber(res.data.bmiNumber);
-        setCountry(res.data.country);
+
         setMessages(res.data.messages);
         console.log(res.data);
       } catch (error) {
@@ -48,7 +48,6 @@ const UpdateSuggestion = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     const credentails = {
-      country,
       bmiNumber,
       messages,
     };
@@ -119,15 +118,7 @@ const UpdateSuggestion = () => {
                 value={bmiNumber}
               />
             </FormControl>
-            <FormControl>
-              <FormLabel>Country</FormLabel>
-              <Input
-                onChange={(e) => {
-                  setCountry(e.target.value);
-                }}
-                value={country}
-              />
-            </FormControl>
+
             <FormControl>
               <FormLabel>Message</FormLabel>
               <Textarea

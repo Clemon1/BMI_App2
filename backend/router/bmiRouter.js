@@ -32,8 +32,8 @@ router.get("/bmi/all/:id", async (req, res) => {
       .exec();
 
     res.status(200).json(findBMI);
-  } catch (error) {
-    res.json(error.message);
+  } catch (err) {
+    res.status(500).json(err.message);
   }
 });
 
@@ -43,21 +43,27 @@ router.get("/bmi/all/suggest/:id", async (req, res) => {
     const id = req.params.id;
     const allbmi = await bmiCalc
       .findById(id)
-      .populate("userId")
       .populate("country")
+      .populate("userId")
       .exec();
+    //
+
     res.status(200).json(allbmi);
   } catch (error) {
-    res.status(500).json(error.message);
-    console.log(error.message);
+    res.status(500).json(err.message);
+    console.log(err.message);
   }
 });
 //  Crate a new suggestion
 
 router.post("/bmi/bmiform/create", async (req, res) => {
-  const newCalc = new bmiCalc(req.body);
-  const savedCalc = await newCalc.save();
-  res.json(savedCalc);
+  try {
+    const newCalc = new bmiCalc(req.body);
+    const savedCalc = await newCalc.save();
+    res.status(200).json(savedCalc);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
 });
 
 //update Single suggestion

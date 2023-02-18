@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Flex, Button, Box, Text } from "@chakra-ui/react";
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { TriangleUpIcon, HamburgerIcon } from "@chakra-ui/icons";
 const Navbar = () => {
@@ -37,9 +38,11 @@ const Navbar = () => {
             transform='rotateZ(199deg);'
             alignSelf='center'
           />
-          <Text alignSelf={"center"} fontSize={[18, 18, 22, 22]}>
-            Fast `N` Feast
-          </Text>
+          <Link to='/Home'>
+            <Text alignSelf={"center"} fontSize={[18, 18, 22, 22]}>
+              Fast `N` Feast
+            </Text>
+          </Link>
         </Flex>
 
         <Button

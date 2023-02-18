@@ -56,7 +56,7 @@ const AllSuggest = () => {
             outline={"none"}
             fontSize={15}
             fontWeight={500}
-            placeholder={"Search for Country"}
+            placeholder={"Search for BMI Number"}
             border={"2px solid #1a202c!important"}
             borderRadius={11}
             bg={"#f4f4f4"}
@@ -83,8 +83,20 @@ const AllSuggest = () => {
           paddingX={[8, 10, 100, 100]}
           paddingBottom={20}
           height={"fit-content"}>
+          {suggest.length <= 0 && (
+            <Flex
+              width={"100%"}
+              height={"50vh"}
+              alignItems={"center"}
+              justifyContent={"center"}>
+              {" "}
+              <Text fontWeight={400} fontSize={[17, 18, 23, 24]}>
+                Not Available
+              </Text>{" "}
+            </Flex>
+          )}
           {suggest
-            .filter((s) => s.userId.firstname.toLowerCase().includes(query))
+            .filter((s) => s.bmiNumber.includes(query))
             .map((s) => {
               return (
                 <Box
