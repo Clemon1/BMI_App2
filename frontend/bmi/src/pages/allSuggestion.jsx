@@ -7,6 +7,16 @@ import {
   Button,
   Select,
 } from "@chakra-ui/react";
+import moment from "moment";
+import {
+  Chart as ChartJS,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Scatter } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BiDotsVerticalRounded } from "react-icons/bi";
@@ -18,6 +28,7 @@ const AllSuggest = () => {
   const [query, setQuery] = useState("");
   const [countries, setCountries] = useState([]);
   const [filterCountry, setFilterCountry] = useState("");
+  ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
   useEffect(() => {
     const getCountries = async (e) => {
@@ -38,9 +49,33 @@ const AllSuggest = () => {
     handleAllSuggest();
   }, [filterCountry]);
 
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  const data = {
+    datasets: [
+      {
+        label: "Number of BMI users",
+        data: [suggest.map((m) => m.bmiNumber)],
+
+        backgroundColor: "rgba(255, 99, 132, 1)",
+      },
+    ],
+  };
   return (
     <Box w={"100%"} height={"100vh"} bg={"#e9d8fd"}>
       <Box w={"100%"} height={"fit-content"} bg={"#e9d8fd"}>
+        <Flex w={"100%"} height={"fit-content"}>
+          <Box width={"50%"} height={"40vh"}></Box>
+          <Box width={"50%"} height={"40vh"}>
+            <Scatter options={options} data={data} />
+          </Box>
+        </Flex>
         <Box
           w={"100%"}
           height={"20%"}
@@ -151,6 +186,12 @@ const AllSuggest = () => {
                       fontWeight={[500, 500, 600, 600]}>
                       {" "}
                       {s.bmiNumber}
+                    </Text>
+                    <Text
+                      fontSize={[17, 17, 16, 14]}
+                      fontWeight={[400, 400, 400, 400]}>
+                      {" "}
+                      {moment(s.createdAt).format("MMMM Do, YYYY")}
                     </Text>
                   </Box>
                 </Box>
