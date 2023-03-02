@@ -1,9 +1,5 @@
-import { useTimer } from "react-timer-hook";
 import {
   Text,
-  Flex,
-  Button,
-  Badge,
   Tabs,
   TabList,
   TabPanels,
@@ -11,23 +7,11 @@ import {
   TabPanel,
   Box,
 } from "@chakra-ui/react";
-const FastTimer = ({ expiryTimestamp }) => {
-  const {
-    seconds,
-    minutes,
-    hours,
-    days,
-    isRunning,
-    start,
-    pause,
-    resume,
-    restart,
-  } = useTimer({
-    expiryTimestamp,
-    onExpire: () => console.warn("onExpire called"),
-  });
+import Countdown from "../components/Countdown";
+
+const FastTimer = () => {
   return (
-    <Box padding={10}>
+    <Box padding={10} height={"100vh"}>
       <Tabs variant='soft-rounded' colorScheme='blue'>
         <TabList>
           <Tab>1hr</Tab>
@@ -36,8 +20,6 @@ const FastTimer = ({ expiryTimestamp }) => {
           <Tab>6hr</Tab>
           <Tab>8hr</Tab>
           <Tab>12hr</Tab>
-          <Tab>24hr</Tab>
-          <Tab>48hr</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -46,39 +28,7 @@ const FastTimer = ({ expiryTimestamp }) => {
               1hr Fast timer
             </Text>
             <Box style={{ textAlign: "center" }}>
-              <h1>
-                Click on the
-                <Badge
-                  padding={2}
-                  borderRadius={18}
-                  color={"#ffffff"}
-                  bg={"purple.800"}>
-                  restart button
-                </Badge>
-                to start the specified fast timer{" "}
-              </h1>
-
-              <div style={{ fontSize: "100px" }}>
-                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                <span>{seconds}</span>
-              </div>
-
-              <Text>{isRunning ? "Running" : "Not running"}</Text>
-
-              <Flex direction={"row"} justifyContent='center' gap={4}>
-                <Button onClick={start}>Start</Button>
-                <Button onClick={pause}>Pause</Button>
-                <Button onClick={resume}>Resume</Button>
-                <Button
-                  onClick={() => {
-                    // Restarts to 5 minutes timer
-                    const time = new Date();
-                    time.setHours(time.getHours() + 1);
-                    restart(time);
-                  }}>
-                  Restart
-                </Button>
-              </Flex>
+              <Countdown hours={1} minutes={0} seconds={0} />
             </Box>
           </TabPanel>
           <TabPanel>
@@ -86,38 +36,7 @@ const FastTimer = ({ expiryTimestamp }) => {
               2hr Fast timer
             </Text>
             <Box style={{ textAlign: "center" }}>
-              <h1>
-                Click on the
-                <Badge
-                  padding={2}
-                  borderRadius={18}
-                  color={"#ffffff"}
-                  bg={"purple.800"}>
-                  restart button
-                </Badge>
-                to start the specified fast timer{" "}
-              </h1>
-              <div style={{ fontSize: "100px" }}>
-                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                <span>{seconds}</span>
-              </div>
-
-              <Text>{isRunning ? "Running" : "Not running"}</Text>
-
-              <Flex direction={"row"} justifyContent='center' gap={4}>
-                <Button onClick={start}>Start</Button>
-                <Button onClick={pause}>Pause</Button>
-                <Button onClick={resume}>Resume</Button>
-                <Button
-                  onClick={() => {
-                    // Restarts to 5 minutes timer
-                    const time = new Date();
-                    time.setHours(time.getHours() + 2);
-                    restart(time);
-                  }}>
-                  Restart
-                </Button>
-              </Flex>
+              <Countdown hours={2} minutes={0} seconds={0} />
             </Box>
           </TabPanel>
           <TabPanel>
@@ -125,38 +44,7 @@ const FastTimer = ({ expiryTimestamp }) => {
               4hr Fast timer
             </Text>
             <Box style={{ textAlign: "center" }}>
-              <h1>
-                Click on the
-                <Badge
-                  padding={2}
-                  borderRadius={18}
-                  color={"#ffffff"}
-                  bg={"purple.800"}>
-                  restart button
-                </Badge>
-                to start the specified fast timer{" "}
-              </h1>
-              <div style={{ fontSize: "100px" }}>
-                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                <span>{seconds}</span>
-              </div>
-
-              <Text>{isRunning ? "Running" : "Not running"}</Text>
-
-              <Flex direction={"row"} justifyContent='center' gap={4}>
-                <Button onClick={start}>Start</Button>
-                <Button onClick={pause}>Pause</Button>
-                <Button onClick={resume}>Resume</Button>
-                <Button
-                  onClick={() => {
-                    // Restarts to 5 minutes timer
-                    const time = new Date();
-                    time.setHours(time.getHours() + 4);
-                    restart(time);
-                  }}>
-                  Restart
-                </Button>
-              </Flex>
+              <Countdown hours={4} minutes={0} seconds={0} />
             </Box>
           </TabPanel>
           <TabPanel>
@@ -164,38 +52,7 @@ const FastTimer = ({ expiryTimestamp }) => {
               6hr Fast timer
             </Text>
             <Box style={{ textAlign: "center" }}>
-              <h1>
-                Click on the
-                <Badge
-                  padding={2}
-                  borderRadius={18}
-                  color={"#ffffff"}
-                  bg={"purple.800"}>
-                  restart button
-                </Badge>
-                to start the specified fast timer{" "}
-              </h1>
-              <div style={{ fontSize: "100px" }}>
-                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                <span>{seconds}</span>
-              </div>
-
-              <Text>{isRunning ? "Running" : "Not running"}</Text>
-
-              <Flex direction={"row"} justifyContent='center' gap={4}>
-                <Button onClick={start}>Start</Button>
-                <Button onClick={pause}>Pause</Button>
-                <Button onClick={resume}>Resume</Button>
-                <Button
-                  onClick={() => {
-                    // Restarts to 5 minutes timer
-                    const time = new Date();
-                    time.setHours(time.getHours() + 6);
-                    restart(time);
-                  }}>
-                  Restart
-                </Button>
-              </Flex>
+              <Countdown hours={6} minutes={0} seconds={0} />
             </Box>
           </TabPanel>
           <TabPanel>
@@ -203,38 +60,7 @@ const FastTimer = ({ expiryTimestamp }) => {
               8hr Fast timer
             </Text>
             <Box style={{ textAlign: "center" }}>
-              <h1>
-                Click on the
-                <Badge
-                  padding={2}
-                  borderRadius={18}
-                  color={"#ffffff"}
-                  bg={"purple.800"}>
-                  restart button
-                </Badge>
-                to start the specified fast timer{" "}
-              </h1>
-              <div style={{ fontSize: "100px" }}>
-                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                <span>{seconds}</span>
-              </div>
-
-              <Text>{isRunning ? "Running" : "Not running"}</Text>
-
-              <Flex direction={"row"} justifyContent='center' gap={4}>
-                <Button onClick={start}>Start</Button>
-                <Button onClick={pause}>Pause</Button>
-                <Button onClick={resume}>Resume</Button>
-                <Button
-                  onClick={() => {
-                    // Restarts to 5 minutes timer
-                    const time = new Date();
-                    time.setHours(time.getHours() + 8);
-                    restart(time);
-                  }}>
-                  Restart
-                </Button>
-              </Flex>
+              <Countdown hours={8} minutes={0} seconds={0} />
             </Box>
           </TabPanel>
           <TabPanel>
@@ -242,116 +68,7 @@ const FastTimer = ({ expiryTimestamp }) => {
               12hr Fast timer
             </Text>
             <Box style={{ textAlign: "center" }}>
-              <h1>
-                Click on the
-                <Badge
-                  padding={2}
-                  borderRadius={18}
-                  color={"#ffffff"}
-                  bg={"purple.800"}>
-                  restart button
-                </Badge>
-                to start the specified fast timer{" "}
-              </h1>
-              <div style={{ fontSize: "100px" }}>
-                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                <span>{seconds}</span>
-              </div>
-
-              <Text>{isRunning ? "Running" : "Not running"}</Text>
-
-              <Flex direction={"row"} justifyContent='center' gap={4}>
-                <Button onClick={start}>Start</Button>
-                <Button onClick={pause}>Pause</Button>
-                <Button onClick={resume}>Resume</Button>
-                <Button
-                  onClick={() => {
-                    // Restarts to 5 minutes timer
-                    const time = new Date();
-                    time.setHours(time.getHours() + 12);
-                    restart(time);
-                  }}>
-                  Restart
-                </Button>
-              </Flex>
-            </Box>
-          </TabPanel>
-          <TabPanel>
-            <Text fontSize={17} fontWeight={500}>
-              24hr Fast timer
-            </Text>
-            <Box style={{ textAlign: "center" }}>
-              <h1>
-                Click on the
-                <Badge
-                  padding={2}
-                  borderRadius={18}
-                  color={"#ffffff"}
-                  bg={"purple.800"}>
-                  restart button
-                </Badge>
-                to start the specified fast timer{" "}
-              </h1>
-              <div style={{ fontSize: "100px" }}>
-                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                <span>{seconds}</span>
-              </div>
-
-              <Text>{isRunning ? "Running" : "Not running"}</Text>
-
-              <Flex direction={"row"} justifyContent='center' gap={4}>
-                <Button onClick={start}>Start</Button>
-                <Button onClick={pause}>Pause</Button>
-                <Button onClick={resume}>Resume</Button>
-                <Button
-                  onClick={() => {
-                    // Restarts to 5 minutes timer
-                    const time = new Date();
-                    time.setHours(time.getHours() + 24);
-                    restart(time);
-                  }}>
-                  Restart
-                </Button>
-              </Flex>
-            </Box>
-          </TabPanel>
-          <TabPanel>
-            <Text fontSize={17} fontWeight={500}>
-              48hr Fast timer
-            </Text>
-            <Box style={{ textAlign: "center" }}>
-              <h1>
-                Click on the
-                <Badge
-                  padding={2}
-                  borderRadius={18}
-                  color={"#ffffff"}
-                  bg={"purple.800"}>
-                  restart button
-                </Badge>
-                to start the specified fast timer{" "}
-              </h1>
-              <div style={{ fontSize: "100px" }}>
-                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                <span>{seconds}</span>
-              </div>
-
-              <Text>{isRunning ? "Running" : "Not running"}</Text>
-
-              <Flex direction={"row"} justifyContent='center' gap={4}>
-                <Button onClick={start}>Start</Button>
-                <Button onClick={pause}>Pause</Button>
-                <Button onClick={resume}>Resume</Button>
-                <Button
-                  onClick={() => {
-                    // Restarts to 5 minutes timer
-                    const time = new Date();
-                    time.setHours(time.getHours() + 48);
-                    restart(time);
-                  }}>
-                  Restart
-                </Button>
-              </Flex>
+              <Countdown hours={12} minutes={0} seconds={0} />
             </Box>
           </TabPanel>
         </TabPanels>
