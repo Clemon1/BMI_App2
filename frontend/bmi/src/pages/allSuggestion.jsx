@@ -57,19 +57,21 @@ const AllSuggest = () => {
     },
   };
 
+  const grap = suggest.map((m) => m.bmiNumber);
+
   const data = {
     datasets: [
       {
         label: "Number of BMI users",
-        data: [suggest.map((m) => m.bmiNumber)],
-
-        backgroundColor: "rgba(255, 99, 132, 1)",
+        data: [grap],
+        color: "#ffffff",
+        backgroundColor: "#ffffff",
       },
     ],
   };
   return (
-    <Box w={"100%"} height={"100vh"} bg={"#e9d8fd"}>
-      <Box w={"100%"} height={"fit-content"} bg={"#e9d8fd"}>
+    <Box w={"100%"} height={"100vh"} bg='#001523'>
+      <Box w={"100%"} height={"fit-content"} bg='#001523'>
         <Flex w={"100%"} height={"fit-content"}>
           <Box width={"50%"} height={"40vh"}></Box>
           <Box width={"50%"} height={"40vh"}>
@@ -125,7 +127,10 @@ const AllSuggest = () => {
               alignItems={"center"}
               justifyContent={"center"}>
               {" "}
-              <Text fontWeight={400} fontSize={[17, 18, 23, 24]}>
+              <Text
+                fontWeight={400}
+                fontSize={[17, 18, 23, 24]}
+                color={"#ffffff"}>
                 Not Available
               </Text>{" "}
             </Flex>
@@ -176,6 +181,14 @@ const AllSuggest = () => {
                       {s.country.name}
                     </Badge>
                   </Box>
+                  <Badge
+                    borderRadius='5px'
+                    p='2'
+                    bg={"#D6BCFA"}
+                    fontWeight={500}
+                    color='#322659'>
+                    {s.gender}
+                  </Badge>
                   <Box
                     w={"100%"}
                     h={"100%"}

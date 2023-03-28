@@ -18,6 +18,10 @@ const bmiSchema = new mongoose.Schema(
     bmiNumber: {
       type: String,
     },
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "Others"],
+    },
     messages: {
       type: String,
     },

@@ -26,7 +26,7 @@ const SingleSuggest = () => {
     <Box
       width={"100%"}
       height='fit-content'
-      bg='#e9d8fd'
+      bg='#001523'
       paddingX={[10, 10, 100, 100]}
       paddingY={[10, 10, 10, 10]}>
       <Flex justifyContent={"center"} width={"100%"} height='100vh'>

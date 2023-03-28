@@ -80,18 +80,18 @@ const Countdown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
 
   return (
     <Box>
-      <Text fontSize={60} fontWeight={500}>
+      <Text fontSize={60} fontWeight={500} color={"#ffffff"}>
         {formatTime(hoursLeft)}:{formatTime(minutesLeft)}:
         {formatTime(secondsLeft)}
       </Text>
       <Flex justifyContent={"center"} gap={2}>
-        <Button onClick={handleStart} disabled={isRunning}>
+        <Button onClick={handleStart} disabled={isRunning} color={"#000000"}>
           Start
         </Button>
-        <Button onClick={handleStop} disabled={!isRunning}>
+        <Button onClick={handleStop} disabled={!isRunning} color={"#000000"}>
           Stop
         </Button>
-        <Button onClick={handlePause} disabled={!isRunning}>
+        <Button onClick={handlePause} disabled={!isRunning} color={"#000000"}>
           Pause
         </Button>
       </Flex>

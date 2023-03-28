@@ -34,10 +34,10 @@ const Login = () => {
   console.log(error);
   return (
     <div className='auth'>
-      <Flex justifyContent='center' bg={"#e9d8fd"}>
+      <Flex justifyContent='center' background={"#001523"}>
         <Box
           w={["100%", "85%", "60%", "50%"]}
-          h='80vh'
+          h='90vh'
           paddingY={50}
           display='flex'
           justifyContent='center'>

@@ -88,6 +88,7 @@ const UpdateSuggestion = () => {
       <Text
         fontSize={[20, 20, 20, 20]}
         paddingY={4}
+        color={"#ffffff"}
         paddingX={[10, 10, 40, 40]}>
         Welcome, {user.users.firstname} {user.users.lastname}
       </Text>

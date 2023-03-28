@@ -59,6 +59,7 @@ const Home = () => {
 
   const country = useRef();
   const messages = useRef();
+  const gender = useRef();
 
   const handleSuggestion = async (e) => {
     e.preventDefault();
@@ -68,6 +69,7 @@ const Home = () => {
       firstname: user.users.firstname,
       lastname: user.users.lastname,
       bmiNumber: bmiNumber.current.value,
+      gender: gender.current.value,
       country: country.current.value,
       messages: messages.current.value,
     };
@@ -159,10 +161,10 @@ const Home = () => {
     <Box
       width={"100%"}
       height={"fit-content"}
-      background={"#e9d8fd"}
+      background={"#001523"}
       paddingX={[8, 10, 50, 120]}
       className='Home'>
-      <Text fontSize={[20, 20, 20, 20]} paddingY={4}>
+      <Text fontSize={[20, 20, 20, 20]} color={"#ffffff"} paddingY={4}>
         Welcome, {user.users.firstname} {user.users.lastname}
       </Text>
 
@@ -185,6 +187,7 @@ const Home = () => {
                 width='100%'
                 padding={4}
                 fontSize={17}
+                color={"#ffffff"}
                 fontWeight={500}
                 height={"6vh"}
                 borderRadius={"6px"}
@@ -237,7 +240,7 @@ const Home = () => {
               color='#322659'
               fontSize={15}
               fontWeight={600}
-              bg='#D6BCFA'
+              bg='#f4f4f4'
               marginBottom={2}
               padding={4}>
               Reload
@@ -259,7 +262,7 @@ const Home = () => {
             gap={[2, 4, 5, 5]}
             marginBottom={17}>
             <Box
-              bg={"#ffffff"}
+              bg={"#002137"}
               width='100%'
               height='100%'
               borderRadius={7}
@@ -267,6 +270,7 @@ const Home = () => {
               <Text
                 textAlign={"center"}
                 fontWeight={[400, 400, 500, 500]}
+                color={"#ffffff"}
                 fontSize={[16, 17, 18, 19]}>
                 Suggestions
               </Text>
@@ -278,7 +282,7 @@ const Home = () => {
                   border='none'
                   outline={"none"}
                   bg='transparent'
-                  color='#541db5'
+                  color={"#ffffff"}
                   width={"100%"}>
                   <ExternalLinkIcon w={30} h={30} />
                 </Button>
@@ -286,13 +290,14 @@ const Home = () => {
             </Box>
 
             <Box
-              bg={"#ffffff"}
+              bg={"#002137"}
               width='100%'
               height='100%'
               borderRadius={7}
               padding={"20px"}>
               <Text
                 textAlign={"center"}
+                color={"#ffffff"}
                 fontWeight={[400, 400, 500, 500]}
                 fontSize={[16, 17, 18, 19]}>
                 Fast-timer
@@ -303,7 +308,7 @@ const Home = () => {
                   border='none'
                   outline={"none"}
                   bg='transparent'
-                  color='#541db5'
+                  color={"#ffffff"}
                   width={"100%"}>
                   <ExternalLinkIcon w={30} h={30} />
                 </Button>
@@ -321,13 +326,18 @@ const Home = () => {
           <form className='formCalc1' onSubmit={handleSuggestion}>
             <h2>Your Suggestion</h2>
             <FormControl paddingBottom={2}>
-              <FormLabel fontSize={17} fontWeight={500} paddingBottom={1}>
+              <FormLabel
+                color={"#ffffff"}
+                fontSize={17}
+                fontWeight={500}
+                paddingBottom={1}>
                 BMI
               </FormLabel>
               <Input
                 border='2px solid #1a202c'
                 outline='none'
                 width='100%'
+                color={"#ffffff"}
                 fontSize={17}
                 fontWeight={500}
                 height={"6vh"}
@@ -338,12 +348,35 @@ const Home = () => {
               />
             </FormControl>
             <FormControl paddingBottom={1}>
-              <FormLabel fontSize={17} fontWeight={500} paddingBottom={2}>
+              <FormLabel
+                fontSize={17}
+                fontWeight={500}
+                color={"#ffffff"}
+                paddingBottom={2}>
+                Gender
+              </FormLabel>
+              <Select
+                variant='filled'
+                placeholder='Gender'
+                color={"#000000"}
+                ref={gender}>
+                <option value='Male'>Male</option>
+                <option value='Female'>Female</option>
+                <option value='Others'>Others</option>
+              </Select>
+            </FormControl>
+            <FormControl paddingBottom={1}>
+              <FormLabel
+                fontSize={17}
+                fontWeight={500}
+                paddingBottom={2}
+                color={"#ffffff"}>
                 Country
               </FormLabel>
               <Select
                 variant='filled'
                 placeholder='Select Country'
+                color={"#000000"}
                 ref={country}>
                 {countries.map((countries) => (
                   <option key={countries._id} value={countries._id}>
@@ -352,13 +385,18 @@ const Home = () => {
                 ))}
               </Select>
             </FormControl>
-            <FormLabel fontSize={17} fontWeight={500} paddingBottom={1}>
+            <FormLabel
+              color={"#ffffff"}
+              fontSize={17}
+              fontWeight={500}
+              paddingBottom={1}>
               Suggestion Message
             </FormLabel>
             <Textarea
               border='2px solid #1a202c'
               outline='none'
               width='100%'
+              color={"#ffffff"}
               fontSize={17}
               fontWeight={500}
               height={18}

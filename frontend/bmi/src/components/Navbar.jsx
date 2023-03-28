@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <Flex
-      bg='#1a202c'
+      bg='#001523'
       w='100%'
       height={75}
       zIndex={2000}

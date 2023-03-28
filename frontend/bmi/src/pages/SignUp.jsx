@@ -69,19 +69,17 @@ const Register = () => {
       <Flex flexDirection={["column", "column", "row", "row"]}>
         <Box
           w='100%'
-          h='80vh'
+          h='100vh'
           paddingY={50}
           display={["none", "none", "flex", "flex"]}
-          justifyContent='center'
-        >
+          justifyContent='center'>
           <Flex
             width={"100%"}
             justifyContent='center'
             direction={"column"}
-            alignItems='center'
-          >
+            alignItems='center'>
             {/* <Lottie options={defaultOptions} height={350} width={424} /> */}
-            <Text fontSize={25} fontWeight={500}>
+            <Text fontSize={30} fontWeight={500} color={"#ffffff"}>
               Stay Fit, Always Check Up, Stay Healty
             </Text>
           </Flex>
@@ -91,15 +89,13 @@ const Register = () => {
           h='80vh'
           paddingY={50}
           display='flex'
-          justifyContent='center'
-        >
+          justifyContent='center'>
           <form className='formBody' onSubmit={handleRegister}>
             <Text
               fontSize={19}
               textAlign='center'
               fontWeight={500}
-              color={"gray.100"}
-            >
+              color={"gray.100"}>
               {" "}
               Register
             </Text>
@@ -159,8 +155,7 @@ const Register = () => {
               fontSize={16}
               fontWeight={500}
               color='#1a202c '
-              bg='#f7fafc'
-            >
+              bg='#f7fafc'>
               Register
             </Button>
           </form>

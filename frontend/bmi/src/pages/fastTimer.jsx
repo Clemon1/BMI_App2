@@ -14,16 +14,16 @@ const FastTimer = () => {
     <Box padding={10} height={"100vh"}>
       <Tabs variant='soft-rounded' colorScheme='blue'>
         <TabList>
-          <Tab>12hr</Tab>
-          <Tab>14hr</Tab>
-          <Tab>16hr</Tab>
-          <Tab>18hr</Tab>
-          <Tab>20hr</Tab>
-          <Tab>22hr</Tab>
+          <Tab color={"#ffffff"}>12hr</Tab>
+          <Tab color={"#ffffff"}>14hr</Tab>
+          <Tab color={"#ffffff"}>16hr</Tab>
+          <Tab color={"#ffffff"}>18hr</Tab>
+          <Tab color={"#ffffff"}>20hr</Tab>
+          <Tab color={"#ffffff"}>22hr</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Text fontSize={17} fontWeight={500}>
+            <Text fontSize={17} fontWeight={500} color={"#ffffff"}>
               {" "}
               12hr Fast timer
             </Text>
@@ -32,15 +32,15 @@ const FastTimer = () => {
             </Box>
           </TabPanel>
           <TabPanel>
-            <Text fontSize={17} fontWeight={500}>
+            <Text fontSize={17} fontWeight={500} color={"#ffffff"}>
               14hr Fast timer
             </Text>
-            <Box style={{ textAlign: "center" }}>
+            <Box style={{ textAlign: "center" }} color={"#ffffff"}>
               <Countdown hours={14} minutes={0} seconds={0} />
             </Box>
           </TabPanel>
           <TabPanel>
-            <Text fontSize={17} fontWeight={500}>
+            <Text fontSize={17} fontWeight={500} color={"#ffffff"}>
               16hr Fast timer
             </Text>
             <Box style={{ textAlign: "center" }}>
@@ -48,7 +48,7 @@ const FastTimer = () => {
             </Box>
           </TabPanel>
           <TabPanel>
-            <Text fontSize={17} fontWeight={500}>
+            <Text fontSize={17} fontWeight={500} color={"#ffffff"}>
               18hr Fast timer
             </Text>
             <Box style={{ textAlign: "center" }}>
@@ -56,7 +56,7 @@ const FastTimer = () => {
             </Box>
           </TabPanel>
           <TabPanel>
-            <Text fontSize={17} fontWeight={500}>
+            <Text fontSize={17} fontWeight={500} color={"#ffffff"}>
               20hr Fast timer
             </Text>
             <Box style={{ textAlign: "center" }}>
@@ -64,7 +64,7 @@ const FastTimer = () => {
             </Box>
           </TabPanel>
           <TabPanel>
-            <Text fontSize={17} fontWeight={500}>
+            <Text fontSize={17} fontWeight={500} color={"#ffffff"}>
               22hr Fast timer
             </Text>
             <Box style={{ textAlign: "center" }}>
