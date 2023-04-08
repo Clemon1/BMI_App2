@@ -272,7 +272,7 @@ const Home = () => {
                 fontWeight={[400, 400, 500, 500]}
                 color={"#ffffff"}
                 fontSize={[16, 17, 18, 19]}>
-                Suggestions
+                Entries
               </Text>
 
               <Link to={"/suggestions"}>
@@ -324,7 +324,7 @@ const Home = () => {
 
         <Box width={["100%", "100%", "90%", "90%"]} height='100%'>
           <form className='formCalc1' onSubmit={handleSuggestion}>
-            <h2>Your Suggestion</h2>
+            <h2>Your Entries</h2>
             <FormControl paddingBottom={2}>
               <FormLabel
                 color={"#ffffff"}

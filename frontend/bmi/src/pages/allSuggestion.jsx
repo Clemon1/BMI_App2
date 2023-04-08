@@ -65,6 +65,7 @@ const AllSuggest = () => {
         label: "Number of BMI users",
         data: [grap],
         color: "#ffffff",
+        borderColor: "#ffffff ",
         backgroundColor: "#ffffff",
       },
     ],
@@ -72,9 +73,8 @@ const AllSuggest = () => {
   return (
     <Box w={"100%"} height={"100vh"} bg='#001523'>
       <Box w={"100%"} height={"fit-content"} bg='#001523'>
-        <Flex w={"100%"} height={"fit-content"}>
-          <Box width={"50%"} height={"40vh"}></Box>
-          <Box width={"50%"} height={"40vh"}>
+        <Flex w={"100%"} justifyContent={"center"} height={"fit-content"}>
+          <Box width={"53%"} height={"48vh"}>
             <Scatter options={options} data={data} />
           </Box>
         </Flex>
@@ -141,7 +141,7 @@ const AllSuggest = () => {
               return (
                 <Box
                   bg={"#ffffff"}
-                  width={["45%", "25%", "25%", "16%"]}
+                  width={["45%", "45%", "35%", "16%"]}
                   height={"fit-Content"}
                   borderRadius={7}
                   padding={4}
@@ -202,7 +202,7 @@ const AllSuggest = () => {
                     </Text>
                     <Text
                       fontSize={[17, 17, 16, 14]}
-                      fontWeight={[400, 400, 400, 400]}>
+                      fontWeight={[400, 400, 400, 500]}>
                       {" "}
                       {moment(s.createdAt).format("MMMM Do, YYYY")}
                     </Text>
