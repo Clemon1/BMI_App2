@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useToast, Button, Flex, Box, Text } from "@chakra-ui/react";
 
-const Countdown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
+const Countdown = ({ hours = 0, minutes = 0, seconds = 0, onFinished }) => {
   const [totalSeconds, setTotalSeconds] = useState(
     hours * 60 * 60 + minutes * 60 + seconds,
   );
@@ -15,6 +15,7 @@ const Countdown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
           if (prevTotalSeconds <= 0) {
             clearInterval(intervalRef.current);
             setIsRunning(false);
+            onFinished();
             showNotification();
             toast({
               title: "Fasting Completed",
@@ -34,7 +35,7 @@ const Countdown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
     }
 
     return () => clearInterval(intervalRef.current);
-  }, [isRunning, toast]);
+  }, [isRunning, toast, onFinished]);
 
   const handleStart = () => {
     setIsRunning(true);
@@ -71,13 +72,9 @@ const Countdown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
 
   const handlePause = () => {
     setIsRunning(false);
-    toast({
-      title: "Pause fasting timer",
-
-      status: "success",
-      position: "bottom-left",
-      duration: 3000,
-      isClosable: true,
+    new Notification("Fast and feast!", {
+      body: "You paused your fasting.",
+      icon: "/path/to/icon.png",
     });
   };
 

@@ -2,9 +2,11 @@ import { Badge, Box, Flex, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import LinChart from "../components/lineChart";
 const SingleSuggest = () => {
   const { id } = useParams();
   const [suggests, setSugguests] = useState({});
+  const [allbmi, setAllbmi] = useState([]);
 
   useEffect(() => {
     const handleSuggest = async () => {
@@ -21,7 +23,24 @@ const SingleSuggest = () => {
     };
     handleSuggest();
   }, [id]);
+
+  useEffect(() => {
+    const handleBMI = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/app/bmi/all/${suggests.userId._id}`,
+        );
+        await setAllbmi(res.data);
+
+        console.log(res.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    handleBMI();
+  }, [suggests.userId]);
   // console.log(suggests.country._id);
+  console.log(allbmi);
   return (
     <Box
       width={"100%"}
@@ -29,7 +48,12 @@ const SingleSuggest = () => {
       bg='#001523'
       paddingX={[10, 10, 100, 100]}
       paddingY={[10, 10, 10, 10]}>
-      <Flex justifyContent={"center"} width={"100%"} height='100vh'>
+      <Flex
+        justifyContent={"center"}
+        direction={"column"}
+        width={"100%"}
+        height='100vh'>
+        <LinChart data={allbmi} axis={"firstname"} pv={"bmiNumber"} />
         <Box
           key={suggests._id}
           width={"100%"}
